@@ -45,8 +45,27 @@ module.exports.details = (req, res, next) => {
 
 // Renders the Add form using the add_edit.ejs template
 module.exports.displayAddPage = (req, res, next) => {
+    
+    Book.find((err, addBook) =>{
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            res.render('book/add_edit', {
+                title: 'Add Book',
+                book: addBook
+            })
+        }
+    });
 
-    res.render('book/add_edit', {title: 'Add Book'})
+
+
+    // res.render('book/add_edit', {
+    //     title: 'Add Book'
+    // })
     
     // ADD YOUR CODE HERE        
 
